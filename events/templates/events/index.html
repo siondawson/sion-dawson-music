@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="text-center mt-5">
+    {% if user.is_authenticated %}
+        <h1>Welcome, {{ user.first_name|default:user.username }} to Sion Dawson Music!</h1>
+    {% else %}
+        <h1>Please log in to access Sion Dawson Music</h1>
+    {% endif %}
+</div>
+{% endblock %}
