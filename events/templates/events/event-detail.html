@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>Event Details</h1>
+    
+    <div class="card">
+        <div class="card-body">
+            <h5 class="card-title">{{ event.venue_name }}</h5>
+            <p class="card-text"><strong>Date:</strong> {{ event.date }}</p>
+            <p class="card-text"><strong>Venue:</strong> {{ event.venue_name }}</p>
+            <p class="card-text"><strong>Postcode:</strong> {{ event.postcode }}</p>
+            <p class="card-text"><strong>Arrival Time:</strong> {{ event.arrival_time }}</p>
+            <p class="card-text"><strong>Start Time:</strong> {{ event.start_time }}</p>
+            <p class="card-text"><strong>Finish Time:</strong> {{ event.finish_time }}</p>
+
+            {% if event.ensemble %}
+                <p class="card-text"><strong>Ensemble:</strong> {{ event.ensemble.name }}</p>
+            {% endif %}
+            
+            {% if event.band_name %}
+                <p class="card-text"><strong>Band Name:</strong> {{ event.band_name.name }}</p>
+            {% endif %}
+            
+            {% if event.requests %}
+                <p class="card-text"><strong>Requests:</strong> {{ event.requests }}</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <h3>Musician Slots</h3>
+    <ul>
+        {% for slot in slots %}
+            <li>
+                <strong>Slot {{ slot.slot_number }}:</strong> 
+                {% if slot.musician %}
+                    {{ slot.musician.username }}
+                {% else %}
+                    <em>Unfilled</em>
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+{% endblock %}
